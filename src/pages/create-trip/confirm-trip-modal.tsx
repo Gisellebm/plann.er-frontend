@@ -2,11 +2,15 @@ import { User, X } from "lucide-react";
 
 interface ConfirmTripModalProps {
     closeConfirmTripModal: () => void
+    setOwnerName: (name: string) => void
+    setOnerEmail: (email: string) => void
     createTrip: (event: React.FormEvent<HTMLFormElement>) => void
 }
 export function ConfirmTripModal({
     closeConfirmTripModal,
-    createTrip
+    createTrip,
+    setOwnerName,
+    setOnerEmail
 }: ConfirmTripModalProps) {
     return (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
@@ -15,7 +19,7 @@ export function ConfirmTripModal({
                 <div className='flex items-center justify-between'>
                   <h2 className="text-lg font-semibold">Confirmar participação</h2>
                   <button type='button' onClick={closeConfirmTripModal}>
-                    <X className="h-5 text-zinc-400" />
+                    <X className="h-5 text-zinc-400"  onClick={closeConfirmTripModal}/>
                   </button>
                 </div>
                 <p className="text-sm text-zinc-500">
@@ -33,6 +37,7 @@ export function ConfirmTripModal({
                     className="outline-none bg-transparent text-lg placeholder-zinc-400 flex-1"  
                     name='name' 
                     placeholder="Seu nome completo" 
+                    onChange={e => setOwnerName(e.target.value)}
                   />    
                 </div>
 
@@ -43,6 +48,7 @@ export function ConfirmTripModal({
                     type="email" 
                     name='email' 
                     placeholder="Seu e-mail pessoal" 
+                    onChange={e => setOnerEmail(e.target.value)}
                   />    
                 </div>
 
